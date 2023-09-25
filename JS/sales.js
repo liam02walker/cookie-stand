@@ -17,7 +17,7 @@ const citiesData = {
       for (let i = 0; i < openHours.length; i++) {
         const ranNum = randomNumber(this.MinCustomers, this.MaxCustomers);
         this.CustomerPerHour.push(ranNum);
-        this.CookieSalesPerHour.push(ranNum * this.AverageCookiesPerCust);
+        this.CookieSalesPerHour.push(Math.floor(ranNum * this.AverageCookiesPerCust));
       }
     },
   },
@@ -32,7 +32,7 @@ const citiesData = {
       for (let i = 0; i < openHours.length; i++) {
         const ranNum = randomNumber(this.MinCustomers, this.MaxCustomers);
         this.CustomerPerHour.push(ranNum);
-        this.CookieSalesPerHour.push(ranNum * this.AverageCookiesPerCust);
+        this.CookieSalesPerHour.push(Math.floor(ranNum * this.AverageCookiesPerCust));
       }
     },
   },
@@ -47,7 +47,7 @@ const citiesData = {
       for (let i = 0; i < openHours.length; i++) {
         const ranNum = randomNumber(this.MinCustomers, this.MaxCustomers);
         this.CustomerPerHour.push(ranNum);
-        this.CookieSalesPerHour.push(ranNum * this.AverageCookiesPerCust);
+        this.CookieSalesPerHour.push(Math.floor(ranNum * this.AverageCookiesPerCust));
       }
     },
   },
@@ -62,7 +62,7 @@ const citiesData = {
       for (let i = 0; i < openHours.length; i++) {
         const ranNum = randomNumber(this.MinCustomers, this.MaxCustomers);
         this.CustomerPerHour.push(ranNum);
-        this.CookieSalesPerHour.push(ranNum * this.AverageCookiesPerCust);
+        this.CookieSalesPerHour.push(Math.floor(ranNum * this.AverageCookiesPerCust));
       }
     },
   },
@@ -77,7 +77,7 @@ const citiesData = {
       for (let i = 0; i < openHours.length; i++) {
         const ranNum = randomNumber(this.MinCustomers, this.MaxCustomers);
         this.CustomerPerHour.push(ranNum);
-        this.CookieSalesPerHour.push(ranNum * this.AverageCookiesPerCust);
+        this.CookieSalesPerHour.push(Math.floor(ranNum * this.AverageCookiesPerCust));
       }
     },
   },
@@ -89,7 +89,7 @@ citiesData.Dubai.Calculating();
 citiesData.Paris.Calculating();
 citiesData.Lima.Calculating();
 
-console.log(citiesData);
+// console.log(citiesData);
 
 const cityData = document.getElementById("cityData");
 const article = document.createElement("article");
@@ -99,10 +99,10 @@ for (i = 0; i < cityNames.length; i++) {
   h2.textContent = cityNames[i];
   article.appendChild(h2);
   const ul = document.createElement("ul");
-  for (i = 0; i < openHours.length; i++) {
+  for (j = 0; j < openHours.length; j++) {
     const li = document.createElement("li");
-    // const cityName = citiesData.cityNames[i];
-    li.textContent = `${openHours[i]} ${citiesData.Tokyo.CookieSalesPerHour[i]} cookies`;
+    // const cityName = citiesData[cityNames[i]];
+    li.textContent = `${openHours[j]} ${citiesData[cityNames[i]].CookieSalesPerHour[j]} cookies`;
     ul.appendChild(li);
   }
   article.append(ul);
