@@ -1,0 +1,27 @@
+* {
+  background-color: #822449;
+  color: #fff;
+}
+img {
+  max-width: 250px;
+  max-height: 250px;
+}
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 50px;
+}
+#navButtons {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
+#navButtons a {
+  text-decoration: none;
+  background-color: rgb(255, 228, 196);
+  color: black;
+
+  padding: 10px 10px;
+  margin: 5px 5px;
+}
