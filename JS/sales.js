@@ -95,7 +95,6 @@ locationForm.addEventListener("submit", function (event) {
   const cookAvg = event.target.averageCookies.value;
 
   const newLocation = new CookiesStore(location, minCust, maxCust, cookAvg);
-  cityLocations.push(location);
   newLocation.render();
   createFooterRow();
 });
