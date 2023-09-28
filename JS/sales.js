@@ -52,6 +52,7 @@ const dubai = new CookiesStore("Dubai", 11, 38, 3.7);
 const paris = new CookiesStore("Paris", 20, 38, 2.3);
 const lima = new CookiesStore("Lima", 2, 16, 4.6);
 
+// Creating totals at the end of the row
 const headerRow = document.createElement("tr");
 const blankTD = document.createElement("td");
 headerRow.appendChild(blankTD);
@@ -61,15 +62,31 @@ for (let i = 0; i < openHours.length; i++) {
   th.textContent = openHours[i];
   headerRow.appendChild(th);
 }
-
 const totalHeader = document.createElement("th");
 totalHeader.textContent = "TOTAL";
-headerRow.appendChild(totalHeader);
 
+headerRow.appendChild(totalHeader);
 table.appendChild(headerRow);
 
+// Renders all locations onto the page
 seattle.render();
 tokyo.render();
 dubai.render();
 paris.render();
 lima.render();
+
+// Form to add a new location
+const locationForm = document.getElementById("locationForm");
+
+locationForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const location = event.target.location.value;
+  const minCust = event.target.minCustomers.value;
+  const maxCust = event.target.maxCustomers.value;
+  const cookAvg = event.target.averageCookies.value;
+
+  const newLocation = new CookiesStore(location, minCust, maxCust, cookAvg);
+
+  newLocation.render();
+});

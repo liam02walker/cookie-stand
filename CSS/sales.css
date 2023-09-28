@@ -49,3 +49,38 @@ td {
   background-color: white;
   text-align: center;
 }
+/* Form */
+form {
+  display: flex;
+  justify-content: center;
+}
+fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  background-color: grey;
+  color: white;
+  border-radius: 25px;
+}
+legend {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+fieldset div {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+fieldset button {
+  width: 50%;
+  align-self: center;
+  margin: 5px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
