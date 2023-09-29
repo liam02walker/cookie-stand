@@ -9,6 +9,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// Function to create each Cookie Store with their set values
 function CookiesStore(location, minCust, maxCust, average) {
   this.location = location;
   this.minCust = minCust;
@@ -48,6 +49,7 @@ CookiesStore.prototype.render = function () {
   tableBody.appendChild(tr);
 };
 
+// Creating each initial cities
 const cities = [
   new CookiesStore("Seattle", 23, 65, 6.3),
   new CookiesStore("Tokyo", 3, 24, 1.2),
@@ -56,7 +58,7 @@ const cities = [
   new CookiesStore("Lima", 2, 16, 4.6),
 ];
 
-// Creating totals at the end of the row
+// Creating totals at the end of each rows
 const headerRow = document.createElement("tr");
 const blankTD = document.createElement("td");
 headerRow.appendChild(blankTD);
@@ -68,7 +70,6 @@ for (let i = 0; i < openHours.length; i++) {
 }
 const totalHeader = document.createElement("th");
 totalHeader.textContent = "TOTAL";
-
 headerRow.appendChild(totalHeader);
 tableHeader.appendChild(headerRow);
 
@@ -94,6 +95,7 @@ locationForm.addEventListener("submit", function (event) {
   createFooterRow();
 });
 
+// Creating the Total row at the footer of the table
 function createFooterRow() {
   //Remove old tr from DOM
   const trID = document.getElementById("totalRow");
