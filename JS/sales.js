@@ -1,6 +1,4 @@
 const openHours = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
-const cityNames = ["seattle", "tokyo", "dubai", "paris", "lima"];
-const cityLocations = [];
 
 const table = document.getElementById("cityData");
 const tableHeader = document.getElementById("tableHeader");
@@ -19,10 +17,6 @@ function CookiesStore(location, minCust, maxCust, average) {
   this.customersPerHour = [];
   this.cookiesPerHour = [];
   this.totalCookieSold = 0;
-  this.addLocation = function () {
-    cityLocations.push(this);
-  };
-  this.addLocation();
 }
 CookiesStore.prototype.calculateSales = function () {
   for (let i = 0; i < openHours.length; i++) {
@@ -54,11 +48,13 @@ CookiesStore.prototype.render = function () {
   tableBody.appendChild(tr);
 };
 
-const seattle = new CookiesStore("Seattle", 23, 65, 6.3);
-const tokyo = new CookiesStore("Tokyo", 3, 24, 1.2);
-const dubai = new CookiesStore("Dubai", 11, 38, 3.7);
-const paris = new CookiesStore("Paris", 20, 38, 2.3);
-const lima = new CookiesStore("Lima", 2, 16, 4.6);
+const cities = [
+  new CookiesStore("Seattle", 23, 65, 6.3),
+  new CookiesStore("Tokyo", 3, 24, 1.2),
+  new CookiesStore("Dubai", 11, 38, 3.7),
+  new CookiesStore("Paris", 20, 38, 2.3),
+  new CookiesStore("Lima", 2, 16, 4.6),
+];
 
 // Creating totals at the end of the row
 const headerRow = document.createElement("tr");
@@ -76,12 +72,10 @@ totalHeader.textContent = "TOTAL";
 headerRow.appendChild(totalHeader);
 tableHeader.appendChild(headerRow);
 
-// Renders all locations onto the page
-seattle.render();
-tokyo.render();
-dubai.render();
-paris.render();
-lima.render();
+// Renders all initial locations onto the page
+for (i = 0; i < cities.length; i++) {
+  cities[i].render();
+}
 
 // Form to add a new location
 const locationForm = document.getElementById("locationForm");
@@ -95,6 +89,7 @@ locationForm.addEventListener("submit", function (event) {
   const cookAvg = event.target.averageCookies.value;
 
   const newLocation = new CookiesStore(location, minCust, maxCust, cookAvg);
+  cities.push(newLocation);
   newLocation.render();
   createFooterRow();
 });
@@ -102,9 +97,8 @@ locationForm.addEventListener("submit", function (event) {
 function createFooterRow() {
   //Remove old tr from DOM
   const trID = document.getElementById("totalRow");
-  if (trID) {
-    trID.remove();
-  }
+  trID?.remove();
+
   //Create new TR
   const tr = document.createElement("tr");
   tr.setAttribute("id", "totalRow");
@@ -116,9 +110,9 @@ function createFooterRow() {
 
   for (i = 0; i < openHours.length; i++) {
     let hourlyTotal = 0;
-    for (j = 0; j < cityLocations.length; j++) {
-      hourlyTotal += cityLocations[j].cookiesPerHour[i];
-      totalTotals += cityLocations[j].cookiesPerHour[i];
+    for (j = 0; j < cities.length; j++) {
+      hourlyTotal += cities[j].cookiesPerHour[i];
+      totalTotals += cities[j].cookiesPerHour[i];
     }
     const thTotal = document.createElement("th");
     thTotal.textContent = hourlyTotal;
